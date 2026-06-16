@@ -1,0 +1,738 @@
+/* ======================================================
+   RAGAZZA IMOBILIÁRIA — CSS
+   Paleta: Off-white #F8F6F2 | Vinho #5C1A2B | Dourado #C9A86C
+   Tipografia: Cormorant Garamond (display) + Inter (corpo)
+====================================================== */
+
+/* ---- RESET & BASE ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --wine:       #5C1A2B;
+  --wine-dark:  #3E1020;
+  --wine-light: #7A2A3E;
+  --gold:       #C9A86C;
+  --gold-light: #DEC28E;
+  --off-white:  #F8F6F2;
+  --border:     #E8E4DD;
+  --text:       #2D2D2D;
+  --text-muted: #6B6460;
+  --white:      #FFFFFF;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --radius: 4px;
+  --shadow: 0 2px 12px rgba(0,0,0,.07);
+  --shadow-hover: 0 8px 28px rgba(0,0,0,.12);
+  --transition: .25s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--off-white);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+img { display: block; max-width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+/* ---- CONTAINER ---- */
+.container {
+  width: min(1160px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* ---- BOTÕES ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn--primary {
+  background: var(--wine);
+  color: var(--white);
+}
+.btn--primary:hover { background: var(--wine-dark); box-shadow: 0 4px 16px rgba(92,26,43,.35); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--wine);
+  border: 1.5px solid var(--wine);
+}
+.btn--outline:hover { background: var(--wine); color: var(--white); }
+
+.btn--header {
+  background: var(--wine);
+  color: var(--white);
+  padding: 10px 22px;
+  font-size: .8rem;
+}
+.btn--header:hover { background: var(--wine-dark); }
+
+.btn--card {
+  background: var(--wine);
+  color: var(--white);
+  padding: 10px 18px;
+  font-size: .78rem;
+  white-space: nowrap;
+}
+.btn--card:hover { background: var(--wine-dark); }
+
+.btn--gold {
+  background: var(--gold);
+  color: var(--wine-dark);
+  font-weight: 600;
+}
+.btn--gold:hover { background: var(--gold-light); }
+
+
+/* ==================================================
+   HEADER
+================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo__name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--wine);
+  letter-spacing: .02em;
+}
+.logo__sub {
+  font-size: .65rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav__link {
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition);
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+.nav__link:hover { color: var(--wine); }
+.nav__link:hover::after { width: 100%; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--wine);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+.hero {
+  position: relative;
+  padding: 96px 0 80px;
+  overflow: hidden;
+  background: var(--off-white);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(201,168,108,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__accent {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--wine) 0%, var(--gold) 50%, transparent 100%);
+}
+
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.hero__title em {
+  font-style: italic;
+  color: var(--wine);
+}
+
+.hero__desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0 28px;
+}
+.stat:first-child { padding-left: 0; }
+
+.stat__num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--wine);
+  line-height: 1;
+}
+.stat__label {
+  font-size: .75rem;
+  color: var(--text-muted);
+  letter-spacing: .04em;
+  margin-top: 2px;
+}
+.stat__divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+
+
+/* ==================================================
+   BASE
+================================================== */
+.section { padding: 80px 0; }
+.section--dark {
+  background: var(--wine-dark);
+  color: var(--white);
+}
+
+.section__header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+
+.section__eyebrow {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section__eyebrow--light { color: var(--gold-light); }
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.section__title--light { color: var(--white); }
+
+.section__desc {
+  font-size: .95rem;
+  color: var(--text-muted);
+}
+
+
+/* ==================================================
+   FILTROS
+================================================== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: var(--white);
+}
+
+
+/* ==================================================
+   CARDS DE IMÓVEIS
+================================================== */
+.imoveis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.card.hidden { display: none; }
+
+/* Área da imagem */
+.card__img-area {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: var(--border);
+}
+.card__img-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--border);
+}
+.card__img-placeholder svg {
+  width: 80px; height: 60px;
+}
+
+/* Tag de status */
+.card__tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  z-index: 1;
+}
+.card__tag--venda { background: var(--wine); color: var(--white); }
+.card__tag--locacao { background: var(--gold); color: var(--wine-dark); }
+
+/* Corpo */
+.card__body { padding: 20px; }
+
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.card__tipo {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--wine);
+  border: 1px solid var(--wine);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.card__bairro {
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+.card__bairro::before { content: '📍'; margin-right: 2px; font-size: .7rem; }
+
+.card__titulo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.card__detalhes {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.card__detalhes .icon { margin-right: 3px; }
+
+/* Borda dourada inferior — assinatura visual */
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 2px solid var(--gold);
+}
+
+.card__preco {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1;
+}
+.card__preco small {
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Mais imóveis */
+.mais-imoveis {
+  text-align: center;
+  margin-top: 48px;
+  padding: 32px;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+}
+.mais-imoveis p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+
+/* ==================================================
+   SOBRE
+================================================== */
+.sobre__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.sobre__content .section__title--light {
+  margin-bottom: 20px;
+}
+
+.sobre__texto {
+  color: rgba(255,255,255,.8);
+  font-size: .95rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.sobre__content .btn--gold { margin-top: 8px; }
+
+.sobre__diferenciais {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.diferencial {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255,255,255,.06);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+}
+.diferencial__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.diferencial h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.diferencial p {
+  font-size: .85rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+}
+
+
+/* ==================================================
+   CONTATO
+================================================== */
+.contato__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.contato-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+.contato-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+.contato-card__icon {
+  width: 52px; height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contato-card__info {
+  display: flex;
+  flex-direction: column;
+}
+.contato-card__info strong {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.contato-card__info span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* Cores por tipo */
+.contato-card--whatsapp .contato-card__icon {
+  background: #DCFCE7;
+  color: #166534;
+}
+.contato-card--instagram .contato-card__icon {
+  background: #FDE8FF;
+  color: #9333EA;
+}
+.contato-card--site .contato-card__icon {
+  background: var(--border);
+  color: var(--wine);
+}
+
+.contato__endereco {
+  text-align: center;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: .9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.contato__endereco strong { color: var(--text); }
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+.footer {
+  background: var(--wine-dark);
+  color: rgba(255,255,255,.7);
+  padding-top: 48px;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.footer__brand .logo__name { color: var(--gold); }
+.footer__brand .logo__sub { color: rgba(255,255,255,.5); }
+.footer__brand p {
+  margin-top: 12px;
+  font-size: .85rem;
+  color: rgba(255,255,255,.55);
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer__links a {
+  font-size: .875rem;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer__links a:hover { color: var(--gold); }
+
+.footer__bottom {
+  text-align: center;
+  padding: 16px;
+  font-size: .78rem;
+  color: rgba(255,255,255,.4);
+}
+
+
+/* ==================================================
+   RESPOSTA
+================================================== */
+@media (max-width: 900px) {
+  .sobre__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Header mobile */
+  .nav {
+    display: none;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    padding: 16px 0;
+  }
+  .nav.open { display: flex; }
+  .nav__link {
+    padding: 14px 24px;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__link::after { display: none; }
+  .btn--header { margin: 12px 24px 0; width: calc(100% - 48px); justify-content: center; }
+  .hamburger { display: flex; }
+
+  .hero { padding: 60px 0 52px; }
+  .hero__stats { gap: 12px; }
+  .stat { padding: 0 14px; }
+  .stat:first-child { padding-left: 0; }
+  .stat__divider { display: none; }
+
+  .imoveis-grid { grid-template-columns: 1fr; }
+
+  .contato__grid { grid-template-columns: 1fr; }
+
+  .card__footer { flex-direction: column; align-items: flex-start; }
+  .btn--card { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero__actions { flex-direction: column; }
+  .btn--primary, .btn--outline { width: 100%; justify-content: center; }
+  .filters { gap: 8px; }
+  .filter-btn { font-size: .72rem; padding: 6px 14px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
